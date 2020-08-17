@@ -1,7 +1,9 @@
-package com.example.restservice.Employee;
+package com.example.restservice.payroll.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import com.example.restservice.payroll.controller.EmployeeController;
+import com.example.restservice.payroll.entity.Employee;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
@@ -12,7 +14,7 @@ class EmployeeModelAssembler implements RepresentationModelAssembler<Employee, E
     @Override
     public EntityModel<Employee> toModel(Employee employee) {
 
-        return EntityModel.of(employee, //
+        return EntityModel.of(employee,
                 linkTo(methodOn(EmployeeController.class).one(employee.getId())).withSelfRel(),
                 linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
     }

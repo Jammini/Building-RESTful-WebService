@@ -1,8 +1,6 @@
-package com.example.restservice.Employee;
+package com.example.restservice.payroll.entity;
 
 import lombok.*;
-
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,16 +11,17 @@ import javax.persistence.Id;
 @ToString
 @NoArgsConstructor
 @Entity
-class Employee {
+public class Employee {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String role;
 
-    Employee(String name, String role) {
-        this.name = name;
+    public Employee(String firstName, String lastName, String role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.role = role;
     }
-
 }

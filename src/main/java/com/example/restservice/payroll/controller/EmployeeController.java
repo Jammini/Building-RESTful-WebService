@@ -1,27 +1,24 @@
-package com.example.restservice.Employee;
+package com.example.restservice.payroll.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.example.restservice.payroll.entity.Employee;
+import com.example.restservice.payroll.hadler.EmployeeNotFoundException;
+import com.example.restservice.payroll.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RequiredArgsConstructor
 @RestController
-class EmployeeController {
+public class EmployeeController {
 
     private final EmployeeRepository repository;
 
@@ -61,9 +58,10 @@ class EmployeeController {
     @PutMapping("/employees/{id}")
     ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
 
-        Employee updatedEmployee = repository.findById(id)
+        Employee updatedEmployee = repository.findById(id) //
                 .map(employee -> {
-                    employee.setName(newEmployee.getName());
+                    employee.setFirstName(newEmployee.getFirstName());
+                    employee.setLastName(newEmployee.getLastName());
                     employee.setRole(newEmployee.getRole());
                     return repository.save(employee);
                 })

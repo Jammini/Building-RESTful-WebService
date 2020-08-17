@@ -1,4 +1,4 @@
-package com.example.restservice.Person;
+package com.example.restservice.person;
 
 import lombok.Getter;
 import lombok.Setter;

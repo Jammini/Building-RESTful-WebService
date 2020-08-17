@@ -1,4 +1,4 @@
-package com.example.restservice.Person;
+package com.example.restservice.person;
 
 import java.util.List;
 
@@ -12,3 +12,4 @@ public interface PersonRepository extends PagingAndSortingRepository<Person, Lon
   List<Person> findByLastName(@Param("name") String name);
 
 }
+
