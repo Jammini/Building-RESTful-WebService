@@ -24,7 +24,9 @@ public class EmployeeController {
 
     private final EmployeeModelAssembler assembler;
 
-    // Aggregate root
+    /**
+     * @return Aggregate root
+     */
     @GetMapping("/employees")
     CollectionModel<EntityModel<Employee>> all() {
 
@@ -45,7 +47,11 @@ public class EmployeeController {
                 .body(entityModel);
     }
 
-    // Single item
+    /**
+     *
+     * @param id
+     * @return Single employee
+     */
     @GetMapping("/employees/{id}")
     EntityModel<Employee> one(@PathVariable Long id) {
 
@@ -66,7 +72,6 @@ public class EmployeeController {
                     return repository.save(employee);
                 })
                 .orElseGet(() -> {
-                    newEmployee.setId(id);
                     return repository.save(newEmployee);
                 });
 

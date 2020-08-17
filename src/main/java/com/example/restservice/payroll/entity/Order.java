@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Setter
 @Getter
 @ToString
 @NoArgsConstructor
@@ -22,7 +21,10 @@ public class Order {
     @GeneratedValue
     private Long id;
 
+    @Setter
     private String description;
+
+    @Setter
     private Status status;
 
     public Order(String description, Status status) {
